@@ -1,0 +1,29 @@
+{
+  "name": "bookstore-api",
+  "version": "1.0.0",
+  "description": "Users can grab and check out books through Postman.",
+  "main": "connection.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColdCoder92/bookstore-api.git"
+  },
+  "keywords": [
+    "javascript",
+    "bookstore",
+    "nodejs",
+    "mysql"
+  ],
+  "author": "Lucas Rodriguez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ColdCoder92/bookstore-api/issues"
+  },
+  "homepage": "https://github.com/ColdCoder92/bookstore-api#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  }
+}

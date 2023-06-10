@@ -13,8 +13,4 @@ myBookstoreConnection.connect((err) => {
     console.log("Connection worked!!!");
 });
 
-myBookstoreConnection.query('SELECT Comment, User FROM comments;', function (error, results, fields) {
-    if (error) throw error;
-        // console.log("Row created")
-        console.log("%s - %s", results[0].Comment, results[0].User);
-});
+module.exports = {myBookstoreConnection};

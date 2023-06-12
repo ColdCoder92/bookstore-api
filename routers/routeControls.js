@@ -7,9 +7,11 @@ const getCommentList = (req, res) => {
             throw error;
         }
         // console.log("Row created")
+        var info = "";
         for (var row = 0; row < results.length; row++) {
-            res.send(`${results[0].Comment} - ${results[0].User}`);
+            info += `${results[row].Comment} - ${results[row].User}\n`;
         }
+        res.send(info);
         //console.log("%s - %s", results[0].Comment, results[0].User);
     });
 }

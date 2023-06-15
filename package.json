@@ -2,7 +2,7 @@
   "name": "bookstore-api",
   "version": "1.0.0",
   "description": "Users can grab and check out books through Postman.",
-  "main": "connection.js",
+  "main": "app.js",
   "scripts": {
     "test": "nodemon ./app.js --exec babel-node"
   },

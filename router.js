@@ -7,11 +7,6 @@ router.get('/wishlist/:id', (req, res) => {
   const id = req.params.id;
 
   db.query('SELECT * FROM wishlist WHERE id = ?', [id], (err, results) => {
-    if (err) {
-      console.error('Error executing query: ', err);
-      return;
-    }
-
     if (results.length === 0) {
       res.status(404).json({ error: 'Wishlist not found...' });
     } else {

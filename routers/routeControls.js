@@ -1,5 +1,6 @@
 const {myBookstoreConnection} = require("../connections/connection");
 // Get All Available Comments from their respective users
+/*
 const getCommentList = (req, res) => {
     myBookstoreConnection.query('SELECT Comment, UserID FROM comments;',
     function (error, results, fields) {
@@ -14,7 +15,8 @@ const getCommentList = (req, res) => {
         res.send(info);
         //console.log("%s - %s", results[0].Comment, results[0].User);
     });
-}
+} 
+*/
 // Get All Available Comments for a particular Book based on Book ID
 const getBookCommentList = (req, res) => {
     myBookstoreConnection.query('SELECT Comment FROM comments WHERE BookID=?', 
@@ -26,6 +28,7 @@ const getBookCommentList = (req, res) => {
     })
 }
 // Get All Available Ratings from their Respective Books
+/*
 const getRatingsList = (req, res) => {
     myBookstoreConnection.query('Select Rating, BookID FROM ratings;',
     function (error, results, fields) {
@@ -37,7 +40,9 @@ const getRatingsList = (req, res) => {
         }
     })
 }
+*/
 // Get Specific Comment based on the Comment ID
+/*
 const getComment = (req, res) => {
     var rowIndex = req.params.commentID - 1;
     myBookstoreConnection.query('SELECT Comment, UserID FROM comments;',
@@ -48,6 +53,7 @@ const getComment = (req, res) => {
         res.send(`${results[rowIndex].Comment} - User # ${results[rowIndex].UserID}`);
     });
 }
+*/
 // Get the Average Rating of a Book based on the Book ID
 const getAverageRating = (req, res) => {
     myBookstoreConnection.query('SELECT Rating FROM ratings WHERE BookID=?',
@@ -65,7 +71,8 @@ const getAverageRating = (req, res) => {
 }
 // Create a Comment for a Book by a User
 const createComment = (req, res) => {
-    myBookstoreConnection.query('INSERT INTO comments(Comment, UserID, BookID, DateStamp) VALUES(?, ?, ?, CURDATE());',
+    myBookstoreConnection.query(
+    'INSERT INTO comments(Comment, UserID, BookID, DateStamp) VALUES(?, ?, ?, CURDATE());',
     [req.body.Comment, req.body.UserID, req.body.BookID],
     function (error, results, fields) {
         if (error) {
@@ -82,10 +89,9 @@ const createRating = (req, res) => {
         if (error) {
             throw error;
         }
-        res.send("Rating Created!"); // To test the success of creating a comment
+        // res.send("Rating Created!"); * To test the success of creating a comment
     });
 }
 module.exports = {
-    getComment, getCommentList, getRatingsList, getAverageRating,
-    getBookCommentList, createComment, createRating
+    getAverageRating, getBookCommentList, createComment, createRating
 };

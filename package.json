@@ -1,0 +1,34 @@
+{
+  "name": "bookstore-api",
+  "version": "1.0.0",
+  "description": "Users can grab and check out books through Postman.",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon ./app.js --exec babel-node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColdCoder92/bookstore-api.git"
+  },
+  "keywords": [
+    "javascript",
+    "bookstore",
+    "nodejs",
+    "mysql"
+  ],
+  "author": "Lucas Rodriguez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ColdCoder92/bookstore-api/issues"
+  },
+  "homepage": "https://github.com/ColdCoder92/bookstore-api#readme",
+  "dependencies": {
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5",
+    "@babel/node": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.22"
+  }
+}

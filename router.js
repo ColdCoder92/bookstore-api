@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('/Users/Tatiana/Desktop/wishlist-mgmt/db.js');
+router.use(express.json());
 
 // gets one wishlist from id entered
 router.get('/wishlist/:id', (req, res) => {
@@ -27,22 +28,36 @@ router.get('/wishlist', (req, res) => {
 });
 
 // create (POST) wishlist for user with name
-router.post('/wishlist/:name', (req, res) => {
-  const name = req.params.name;
+router.post('/wishlist/create', (req, res) => {
+  const {id, name, username} = req.body;
+  const query = 'INSERT INTO wishlist(id, name, username) VALUES(?, ?, ?)';
 
-  db.query('INSERT INTO wishlist(id, name) VALUES(?, ?);', [id], [name], (err, results) => {
+  db.query(query, [id, name, username], (err) => {
     if (err) {
-      throw err;
+      console.error('Error executing query: ', err);
+      res.status(500).json({ error: 'Failed to create wishlist. Try again.' });
     } else {
-      res.json(results);
+      res.send("Successfully created wishlist!");
     }
   });
 });
 
 // add (POST) book into user's wishlist
-router.post('/wishlist/:name/:book_id', (req, res) => {
+router.post('/wishlist/add_book', (req, res) => {
+  const {id, book_id} = req.body;
+  const query = 'INSERT INTO wishlist(id, book_id) VALUES(?, ?)';
 
+  db.query(query, [id, book_id], (err) => {
+    if (err) {
+      console.error('Error executing query: ', err);
+      res.status(500).json({ error: 'Failed to add book into the wishlist. Try again.' });
+    } else {
+      res.send("Sucessfully inserted book into wishlist!");
+    }
+  });
 });
+
+// remove (DELETE) book from wishlist
 
 
 module.exports = router;

@@ -83,8 +83,16 @@ const createComment = (req, res) => {
 }
 // Create a Rating for a Book by a User based on a 5-Star Scale
 const createRating = (req, res) => {
+    var rating = req.body.Rating;
+    // Ensure the rating is strictly between 0 and 5
+    if (rating < 0) {
+        rating = 0;
+    }
+    if (rating > 5) {
+        rating = 5;
+    }
     myBookstoreConnection.query('INSERT INTO ratings(rating, user_id, book_id, datestamp) VALUES(?, ?, ?, CURDATE());',
-    [req.body.Rating, req.body.UserID, req.body.BookID],
+    [rating, req.body.UserID, req.body.BookID],
     function (error, results, fields) {
         if (error) {
             throw error;

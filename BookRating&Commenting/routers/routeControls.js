@@ -63,7 +63,7 @@ const getAverageRating = (req, res) => {
         }
         var sum = 0;
         for (var row = 0; row < results.length; row++) {
-            sum += results[row].Rating;
+            sum += results[row].rating;
         }
         var average = sum / results.length;
         res.send(`Average Rating of Book ${req.params.bookID}: ${average}/5`);
@@ -72,13 +72,13 @@ const getAverageRating = (req, res) => {
 // Create a Comment for a Book by a User
 const createComment = (req, res) => {
     myBookstoreConnection.query(
-    'INSERT INTO comments(comment, user_id, book_id, datestamp VALUES(?, ?, ?, CURDATE());',
+    'INSERT INTO comments(comment, user_id, book_id, datestamp) VALUES(?, ?, ?, CURDATE());',
     [req.body.Comment, req.body.UserID, req.body.BookID],
     function (error, results, fields) {
         if (error) {
             throw error;
         }
-        // res.send("Comment Created!"); * To test the success of creating a comment
+        res.send();
     });
 }
 // Create a Rating for a Book by a User based on a 5-Star Scale
@@ -97,6 +97,7 @@ const createRating = (req, res) => {
         if (error) {
             throw error;
         }
+        res.send();
         // res.send("Rating Created!"); * To test the success of creating a comment
     });
 }

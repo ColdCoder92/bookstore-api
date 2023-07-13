@@ -1,22 +1,5 @@
 const {myBookstoreConnection} = require("../connections/connection");
-// Get All Available Comments from their respective users
-/*
-const getCommentList = (req, res) => {
-    myBookstoreConnection.query('SELECT Comment, UserID FROM comments;',
-    function (error, results, fields) {
-        if (error) {
-            throw error;
-        }
-        // console.log("Row created")
-        var info = "";
-        for (var row = 0; row < results.length; row++) {
-            info += `${results[row].Comment} - User # ${results[row].UserID}\n`;
-        }
-        res.send(info);
-        //console.log("%s - %s", results[0].Comment, results[0].User);
-    });
-} 
-*/
+
 // Get All Available Comments for a particular Book based on Book ID
 const getBookCommentList = (req, res) => {
     myBookstoreConnection.query('SELECT comment FROM comments WHERE book_id=?', 
@@ -27,33 +10,6 @@ const getBookCommentList = (req, res) => {
         res.json(results);
     })
 }
-// Get All Available Ratings from their Respective Books
-/*
-const getRatingsList = (req, res) => {
-    myBookstoreConnection.query('Select Rating, BookID FROM ratings;',
-    function (error, results, fields) {
-        if (error) {
-            throw error;
-        }
-        for (var row = 0; row < results.length; row++) {
-            info += `Book #${results[row].BookID} - ${results[row].Rating}/5\n`;
-        }
-    })
-}
-*/
-// Get Specific Comment based on the Comment ID
-/*
-const getComment = (req, res) => {
-    var rowIndex = req.params.commentID - 1;
-    myBookstoreConnection.query('SELECT Comment, UserID FROM comments;',
-    function (error, results, fields) {
-        if (error) {
-            throw error;
-        }
-        res.send(`${results[rowIndex].Comment} - User # ${results[rowIndex].UserID}`);
-    });
-}
-*/
 // Get the Average Rating of a Book based on the Book ID
 const getAverageRating = (req, res) => {
     myBookstoreConnection.query('SELECT rating FROM ratings WHERE book_id=?',

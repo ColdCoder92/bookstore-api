@@ -8,9 +8,13 @@ const port = 3000;
 app.use(bodyParser.json());
 
 const userRoutes = require('./routes/userRoutes');
+const getUserRoutes = require('./routes/getUserRoutes');
+
 
 //Routes
 app.use('/api', userRoutes);
+app.use('/api', getUserRoutes);
+
 
 
 app.listen(port, () => {

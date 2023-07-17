@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const route = require('/Users/Tatiana/Desktop/wishlist-mgmt/router.js');
-const db = require('/Users/Tatiana/Desktop/wishlist-mgmt/db.js');
+const route = require('./router');
+const db = require('./db');
 
 app.use('/', route);
 

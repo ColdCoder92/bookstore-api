@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('/Users/Tatiana/Desktop/wishlist-mgmt/db.js'); //./db
+const db = require('./db');
 router.use(express.json());
 
 // gets all wishlists
@@ -45,8 +45,7 @@ router.post('/wishlist/create', (req, res) => {
 // add book into user's wishlist (POST) 
 router.post('/wishlist/add_book', (req, res) => {
   const {id, book_id, user_id} = req.body;
-  const query = 'INSERT INTO wishlist(id, book_id, user_id) VALUES(?, ?, ?)';
-  //get it to replace null values????
+  const query = 'INSERT INTO wishlist(id, book_id, user_id) VALUES(?, ?, ?) WHERE book_id=NULL';
 
   db.query(query, [id, book_id, user_id], (err) => {
     if (err) {
@@ -61,7 +60,7 @@ router.post('/wishlist/add_book', (req, res) => {
 // move book from wishlist to shopping cart (DELETE)
 router.delete('/wishlist/move', (req, res) => {
   const {book_id, user_id} = req.body;
-  const query = 'INSERT INTO shopping_cart(book_id, user_id) VALUES(?, ?)';
+  const query = 'INSERT INTO cart_items(book_id, user_id) VALUES(?, ?)';
   
   db.query(query, [book_id, user_id], (err) => {
     if (err) {

@@ -9,11 +9,13 @@ app.use(bodyParser.json());
 
 const userRoutes = require('./routes/userRoutes');
 const getUserRoutes = require('./routes/getUserRoutes');
+const updateUserRoutes = require('./routes/updateUserRoutes');
 
 
 //Routes
 app.use('/api', userRoutes);
 app.use('/api', getUserRoutes);
+app.use('/api', updateUserRoutes);
 
 
 

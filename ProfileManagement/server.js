@@ -10,12 +10,16 @@ app.use(bodyParser.json());
 const userRoutes = require('./routes/userRoutes');
 const getUserRoutes = require('./routes/getUserRoutes');
 const updateUserRoutes = require('./routes/updateUserRoutes');
+const creditCardRoutes = require('./routes/creditCardRoutes');
+
 
 
 //Routes
 app.use('/api', userRoutes);
 app.use('/api', getUserRoutes);
 app.use('/api', updateUserRoutes);
+app.use('/api', creditCardRoutes);
+
 
 
 

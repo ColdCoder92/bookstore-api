@@ -44,10 +44,10 @@ router.post('/wishlist/create', (req, res) => {
 
 // add book into user's wishlist (POST) 
 router.post('/wishlist/add_book', (req, res) => {
-  const {id, book_id, user_id} = req.body;
-  const query = 'INSERT INTO wishlist(id, book_id, user_id) VALUES(?, ?, ?) WHERE book_id=NULL';
+  const {id, name, book_id, user_id} = req.body;
+  const query = 'INSERT INTO wishlist(id, name, book_id, user_id) VALUES(?, ?, ?, ?)';
 
-  db.query(query, [id, book_id, user_id], (err) => {
+  db.query(query, [id, name, book_id, user_id], (err) => {
     if (err) {
       console.error('Error executing query: ', err);
       res.status(500).json({ error: 'Failed to add book into the wishlist. Try again.' });
@@ -59,10 +59,10 @@ router.post('/wishlist/add_book', (req, res) => {
 
 // move book from wishlist to shopping cart (DELETE)
 router.delete('/wishlist/move', (req, res) => {
-  const {book_id, user_id} = req.body;
-  const query = 'INSERT INTO cart_items(book_id, user_id) VALUES(?, ?)';
+  const {book_id} = req.body;
+  const query = 'INSERT INTO shopping_cart(book_id) VALUES(?)';
   
-  db.query(query, [book_id, user_id], (err) => {
+  db.query(query, [book_id], (err) => {
     if (err) {
       console.error('Error executing query: ', err);
       res.status(500).json({ error: 'Failed to move book to shopping cart. Try again.' });
